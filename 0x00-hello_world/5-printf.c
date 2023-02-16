@@ -2,7 +2,7 @@
 
 /**
  * main - Entry point
- * Description: This function prints a message to the console using the printf() function.
+ * Description: function prints message to console using the printf() function.
  * Return: Always 0 (Success)
  */
 
