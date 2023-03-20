@@ -5,7 +5,6 @@
  *
  * Return: Always 0.
  *
- * Author: Silas Mugambi.
  */
 
 int main(void)
