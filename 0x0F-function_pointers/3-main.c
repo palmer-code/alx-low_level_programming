@@ -3,40 +3,42 @@
 #include "3-calc.h"
 
 /**
- * main - prints the results of simple operations
- * @argc: number of command line arguments
- * @argv: array of command line arguments
- *
- * Return: Always 0.
+ * main - Start here to do stuff
+ * @argc: Number of arguments passed in
+ * @argv: Arguments stored in each index
+ * Return: Success
  */
-
 int main(int argc, char *argv[])
 {
-	int num1, num2;
-	int (*op_func)(int, int);
+	int result, num1, num2;
+	int (*ptr)(int, int);
 
-	if (argc != 4)
+	if (argc < 4 || argv[1] == NULL || argv[3] == NULL)
 	{
 		printf("Error\n");
-		return (98);
+		exit(98);
+	}
+
+	if ((*argv[2] == '/' || *argv[2] == '%') && *argv[3] == '0')
+	{
+		printf("Error\n");
+		exit(100);
 	}
 
 	num1 = atoi(argv[1]);
 	num2 = atoi(argv[3]);
-	op_func = get_op_func(argv[2]);
 
-	if (op_func == NULL)
+	ptr = get_op_func(argv[2]);
+
+	if (ptr == NULL || argv[2][1] != '\0')
 	{
 		printf("Error\n");
-		return (99);
+		exit(99);
 	}
 
-	if ((num2 == 0) && (*argv[2] == '/' || *argv[2] == '%'))
-	{
-		printf("Error\n");
-		return (100);
-	}
+	result = ptr(num1, num2);
 
-	printf("%d\n", op_func(num1, num2));
-		return (0);
+	printf("%d\n", result);
+
+	return (0);
 }
